@@ -13,10 +13,12 @@ Fonctions importées :
 - string_to_csv, csv_to_string (csv_management)
 - string_to_json, json_to_string (json_management)
 - string_to_xml, xml_to_string (xml_management)
+- double_liste, filtre_pairs (map_filter)
 """
 from csv_management import string_to_csv, csv_to_string
 from json_management import string_to_json, json_to_string
 from xml_management import string_to_xml, xml_to_string
+from map_filter import double_liste, filtre_pairs
 
 if __name__ == "__main__":
     print("Bienvenue dans le main de l'application !")
@@ -50,3 +52,13 @@ if __name__ == "__main__":
     print("\nLecture du contenu du fichier XML :")
     xml_contenu = xml_to_string(xml_filename)
     print(xml_contenu)
+
+    # Exemple d'utilisation de map et filter
+    nombres = [1, 2, 3, 4, 5]
+    print("\nListe de départ :", nombres)
+
+    doubles = double_liste(nombres)
+    print("Après map (x2) :", doubles)
+
+    pairs = filtre_pairs(nombres)
+    print("Après filter (pairs) :", pairs)
