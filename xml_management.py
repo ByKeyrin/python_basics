@@ -14,7 +14,7 @@ def string_to_xml(data: str) -> str:
     Returns:
         str: Le nom du fichier XML créé.
     """
-    filename = f"output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xml"
+    filename = f"data/output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xml"
     filepath = os.path.join(os.path.dirname(__file__), filename)
     # Valider le XML
     ET.fromstring(data)
