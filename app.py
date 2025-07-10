@@ -15,7 +15,7 @@ Fonctions importées :
 - string_to_xml, xml_to_string (xml_management)
 - double_liste, filtre_pairs (map_filter)
 """
-from csv_management import string_to_csv, csv_to_string
+from csv_management import string_to_csv, csv_to_string, string_to_csv_dict, csv_to_string_dict
 from json_management import string_to_json, json_to_string
 from xml_management import string_to_xml, xml_to_string
 from map_filter import double_liste, filtre_pairs
@@ -32,6 +32,15 @@ if __name__ == "__main__":
     print("\nLecture du contenu du fichier CSV :")
     contenu = csv_to_string(filename)
     print(contenu)
+
+    # Exemple d'utilisation : conversion d'une chaîne en CSV via DictWriter puis relecture avec DictReader
+    print("\nCréation d'un fichier CSV (DictWriter) à partir d'une chaîne :")
+    filename_dict = string_to_csv_dict(csv_data)
+    print(f"Fichier créé (DictWriter) : {filename_dict}")
+
+    print("\nLecture du contenu du fichier CSV (DictReader) :")
+    contenu_dict = csv_to_string_dict(filename_dict)
+    print(contenu_dict)
 
     # Exemple d'utilisation : conversion d'une chaîne JSON puis relecture du JSON
     json_data = '[{"nom": "Alice", "age": 30}, {"nom": "Bob", "age": 25}]'

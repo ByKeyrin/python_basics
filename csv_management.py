@@ -49,3 +49,30 @@ def csv_to_string(filename: str) -> str:
         for row in reader:
             lines.append(','.join(row))
     return '\n'.join(lines)
+
+
+def string_to_csv_dict(data: str) -> str:
+    """
+    Prend une chaîne de caractères CSV avec en-tête, la transforme en fichier CSV via DictWriter et retourne le nom du fichier créé.
+    """
+    filename = f"data/output_dict_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    filepath = os.path.join(os.path.dirname(__file__), filename)
+    lines = data.strip().split('\n')
+    reader = csv.DictReader(lines)
+    fieldnames = reader.fieldnames
+    rows = list(reader)
+    with open(filepath, mode='w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+    return filename
+
+
+def csv_to_string_dict(filename: str) -> str:
+    """
+    Prend un fichier CSV en paramètre et retourne son contenu sous forme de liste de dictionnaires (via DictReader).
+    """
+    filepath = os.path.join(os.path.dirname(__file__), filename)
+    with open(filepath, mode='r', newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        return str([row for row in reader])
