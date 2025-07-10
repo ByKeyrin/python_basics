@@ -19,6 +19,7 @@ from csv_management import string_to_csv, csv_to_string, string_to_csv_dict, csv
 from json_management import string_to_json, json_to_string
 from xml_management import string_to_xml, xml_to_string
 from map_filter import double_liste, filtre_pairs
+from database_management import SimpleDatabase
 
 if __name__ == "__main__":
     print("Bienvenue dans le main de l'application !")
@@ -71,3 +72,12 @@ if __name__ == "__main__":
 
     pairs = filtre_pairs(nombres)
     print("Après filter (pairs) :", pairs)
+
+    # Exemple d'utilisation de la base de données SQLite
+    print("\n--- Exemple base de données SQLite ---")
+    db = SimpleDatabase()
+    db.insert_personne("Alice", 30)
+    db.insert_personne("Bob", 25)
+    personnes = db.get_all_personnes()
+    print("Toutes les personnes dans la base :", personnes)
+    db.close()
