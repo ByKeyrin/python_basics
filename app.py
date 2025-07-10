@@ -15,11 +15,11 @@ Fonctions importées :
 - string_to_xml, xml_to_string (xml_management)
 - double_liste, filtre_pairs (map_filter)
 """
-from csv_management import string_to_csv, csv_to_string, string_to_csv_dict, csv_to_string_dict
-from json_management import string_to_json, json_to_string
-from xml_management import string_to_xml, xml_to_string
-from map_filter import double_liste, filtre_pairs
-from database_management import SimpleDatabase
+from modules.csv_management import string_to_csv, csv_to_string, string_to_csv_dict, csv_to_string_dict
+from modules.json_management import string_to_json, json_to_string
+from modules.xml_management import string_to_xml, xml_to_string
+from modules.map_filter import double_liste, filtre_pairs
+from modules.database_management import SimpleDatabase
 
 if __name__ == "__main__":
     print("Bienvenue dans le main de l'application !")

@@ -2,6 +2,9 @@ import json
 import os
 from datetime import datetime
 
+# Utilisation du chemin absolu du dossier parent du projet pour le dossier data
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
+
 def string_to_json(data: str) -> str:
     """
     Prend une chaîne de caractères représentant un objet ou une liste JSON,
@@ -14,8 +17,8 @@ def string_to_json(data: str) -> str:
     Returns:
         str: Le nom du fichier JSON créé.
     """
-    filename = f"data/output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filename = f"output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    filepath = os.path.join(DATA_DIR, filename)
     # Charger pour valider le JSON
     obj = json.loads(data)
     with open(filepath, mode='w', encoding='utf-8') as jsonfile:
@@ -32,7 +35,7 @@ def json_to_string(filename: str) -> str:
     Returns:
         str: Le contenu du fichier sous forme de chaîne de caractères.
     """
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filepath = os.path.join(DATA_DIR, filename)
     with open(filepath, mode='r', encoding='utf-8') as jsonfile:
         obj = json.load(jsonfile)
     return json.dumps(obj, ensure_ascii=False, indent=2)

@@ -2,6 +2,9 @@ import os
 from datetime import datetime
 import xml.etree.ElementTree as ET
 
+# Utilisation du chemin absolu du dossier parent du projet pour le dossier data
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
+
 def string_to_xml(data: str) -> str:
     """
     Prend une chaîne de caractères représentant un document XML,
@@ -14,8 +17,8 @@ def string_to_xml(data: str) -> str:
     Returns:
         str: Le nom du fichier XML créé.
     """
-    filename = f"data/output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xml"
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filename = f"output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xml"
+    filepath = os.path.join(DATA_DIR, filename)
     # Valider le XML
     ET.fromstring(data)
     with open(filepath, mode='w', encoding='utf-8') as xmlfile:
@@ -32,6 +35,6 @@ def xml_to_string(filename: str) -> str:
     Returns:
         str: Le contenu du fichier sous forme de chaîne de caractères.
     """
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filepath = os.path.join(DATA_DIR, filename)
     with open(filepath, mode='r', encoding='utf-8') as xmlfile:
         return xmlfile.read()

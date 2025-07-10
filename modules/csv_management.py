@@ -2,6 +2,9 @@ import csv
 import os
 from datetime import datetime
 
+# Utilisation du chemin absolu du dossier parent du projet pour le dossier data
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
+
 
 def string_to_csv(data: str) -> str:
     """
@@ -16,8 +19,8 @@ def string_to_csv(data: str) -> str:
         str: Le nom du fichier CSV créé.
     """
     # Générer un nom de fichier unique
-    filename = f"data/output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filename = f"output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    filepath = os.path.join(DATA_DIR, filename)
 
     # Séparer les lignes et colonnes
     lines = data.strip().split('\n')
@@ -42,7 +45,7 @@ def csv_to_string(filename: str) -> str:
     Returns:
         str: Le contenu du fichier sous forme de chaîne de caractères.
     """
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filepath = os.path.join(DATA_DIR, filename)
     lines = []
     with open(filepath, mode='r', newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
@@ -55,8 +58,8 @@ def string_to_csv_dict(data: str) -> str:
     """
     Prend une chaîne de caractères CSV avec en-tête, la transforme en fichier CSV via DictWriter et retourne le nom du fichier créé.
     """
-    filename = f"data/output_dict_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filename = f"output_dict_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    filepath = os.path.join(DATA_DIR, filename)
     lines = data.strip().split('\n')
     reader = csv.DictReader(lines)
     fieldnames = reader.fieldnames
@@ -72,7 +75,7 @@ def csv_to_string_dict(filename: str) -> str:
     """
     Prend un fichier CSV en paramètre et retourne son contenu sous forme de liste de dictionnaires (via DictReader).
     """
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filepath = os.path.join(DATA_DIR, filename)
     with open(filepath, mode='r', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         return str([row for row in reader])

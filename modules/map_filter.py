@@ -1,3 +1,7 @@
+import os
+
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
+
 # Fonction utilisant map : multiplie chaque élément d'une liste par 2
 
 def double_liste(liste):

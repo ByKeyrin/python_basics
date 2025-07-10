@@ -1,4 +1,8 @@
 import sqlite3
+import os
+
+# Utilisation du chemin absolu du dossier parent du projet pour le dossier data
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
 
 class SimpleDatabase:
     """
@@ -6,12 +10,14 @@ class SimpleDatabase:
     Permet de créer une table, d'insérer et de lire des personnes (nom, âge).
     La base est stockée dans le dossier data/.
     """
-    def __init__(self, db_name="data/simple.db"):
+    def __init__(self, db_name=None):
         """
         Initialise la connexion à la base et crée la table si besoin.
         Args:
             db_name (str): Chemin du fichier de base de données.
         """
+        if db_name is None:
+            db_name = os.path.join(DATA_DIR, "simple.db")
         self.db_name = db_name
         self.conn = sqlite3.connect(self.db_name)
         self.create_table()
